@@ -1,14 +1,14 @@
-'use strict';
-const meow = require('meow');
-const path = require('path');
+'use strict'
+const meow = require('meow')
+const path = require('path')
 
-const tsFile = getTSFile();
-const jsFile = TS2JS(tsFile);
+const tsFile = getTSFile()
+const jsFile = TS2JS(tsFile)
 
-replaceCLIArg(tsFile, jsFile);
+replaceCLIArg(tsFile, jsFile)
 
 // Ava debugger
-require('ava/profile');
+require('ava/profile')
 
 /**
  * get ts file path from CLI args
@@ -16,8 +16,8 @@ require('ava/profile');
  * @return string path
  */
 function getTSFile() {
-  const cli = meow();
-  return cli.input[0];
+  const cli = meow()
+  return cli.input[0]
 }
 
 /**
@@ -27,17 +27,17 @@ function getTSFile() {
  * @return string path
  */
 function TS2JS(tsFile) {
-  const srcFolder = path.join(__dirname, '..', 'src');
-  const distFolder = path.join(__dirname, '..', 'build', 'main');
+  const srcFolder = path.join(__dirname, '..', 'src')
+  const distFolder = path.join(__dirname, '..', 'build', 'main')
 
-  const tsPathObj = path.parse(tsFile);
+  const tsPathObj = path.parse(tsFile)
 
   return path.format({
     dir: tsPathObj.dir.replace(srcFolder, distFolder),
     ext: '.js',
     name: tsPathObj.name,
     root: tsPathObj.root
-  });
+  })
 }
 
 /**
@@ -48,5 +48,5 @@ function TS2JS(tsFile) {
  * @return void
  */
 function replaceCLIArg(search, replace) {
-  process.argv[process.argv.indexOf(search)] = replace;
+  process.argv[process.argv.indexOf(search)] = replace
 }
