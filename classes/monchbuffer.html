@@ -66,6 +66,18 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>The superfast buffer class that&#39;s the main part of Monch.</p>
+					</div>
+					<p>Here&#39;s a simple example to try out:</p>
+					<pre><code class="language-js"><span class="hljs-keyword">const</span> buffer = <span class="hljs-keyword">new</span> MonchBuffer()
+buffer.grow(<span class="hljs-number">8</span>)
+buffer.writeUint32BE(<span class="hljs-number">0x00</span>, <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint32Array</span>([ <span class="hljs-number">0xDEADBEEF</span> ]))
+<span class="hljs-built_in">console</span>.log(buffer.toArray())</code></pre>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
@@ -157,7 +169,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kognise/monch/blob/8801bf8/src/lib/buffer.ts#L35">lib/buffer.ts:35</a></li>
+									<li>Defined in <a href="https://github.com/kognise/monch/blob/7a41e31/src/lib/buffer.ts#L46">lib/buffer.ts:46</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -186,7 +198,7 @@
 					<div class="tsd-signature tsd-kind-icon">bit<wbr>Capacity<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/kognise/monch/blob/8801bf8/src/lib/buffer.ts#L28">lib/buffer.ts:28</a></li>
+							<li>Defined in <a href="https://github.com/kognise/monch/blob/7a41e31/src/lib/buffer.ts#L39">lib/buffer.ts:39</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -201,7 +213,7 @@
 					<div class="tsd-signature tsd-kind-icon">bit<wbr>Offset<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/kognise/monch/blob/8801bf8/src/lib/buffer.ts#L23">lib/buffer.ts:23</a></li>
+							<li>Defined in <a href="https://github.com/kognise/monch/blob/7a41e31/src/lib/buffer.ts#L34">lib/buffer.ts:34</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -216,7 +228,7 @@
 					<div class="tsd-signature tsd-kind-icon">byte<wbr>Capacity<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/kognise/monch/blob/8801bf8/src/lib/buffer.ts#L18">lib/buffer.ts:18</a></li>
+							<li>Defined in <a href="https://github.com/kognise/monch/blob/7a41e31/src/lib/buffer.ts#L29">lib/buffer.ts:29</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -231,7 +243,7 @@
 					<div class="tsd-signature tsd-kind-icon">byte<wbr>Offset<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/kognise/monch/blob/8801bf8/src/lib/buffer.ts#L13">lib/buffer.ts:13</a></li>
+							<li>Defined in <a href="https://github.com/kognise/monch/blob/7a41e31/src/lib/buffer.ts#L24">lib/buffer.ts:24</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -253,7 +265,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kognise/monch/blob/8801bf8/src/lib/buffer.ts#L558">lib/buffer.ts:558</a></li>
+									<li>Defined in <a href="https://github.com/kognise/monch/blob/7a41e31/src/lib/buffer.ts#L569">lib/buffer.ts:569</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -284,7 +296,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kognise/monch/blob/8801bf8/src/lib/buffer.ts#L546">lib/buffer.ts:546</a></li>
+									<li>Defined in <a href="https://github.com/kognise/monch/blob/7a41e31/src/lib/buffer.ts#L557">lib/buffer.ts:557</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -315,7 +327,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kognise/monch/blob/8801bf8/src/lib/buffer.ts#L721">lib/buffer.ts:721</a></li>
+									<li>Defined in <a href="https://github.com/kognise/monch/blob/7a41e31/src/lib/buffer.ts#L732">lib/buffer.ts:732</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -337,7 +349,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kognise/monch/blob/8801bf8/src/lib/buffer.ts#L728">lib/buffer.ts:728</a></li>
+									<li>Defined in <a href="https://github.com/kognise/monch/blob/7a41e31/src/lib/buffer.ts#L739">lib/buffer.ts:739</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -359,7 +371,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kognise/monch/blob/8801bf8/src/lib/buffer.ts#L694">lib/buffer.ts:694</a></li>
+									<li>Defined in <a href="https://github.com/kognise/monch/blob/7a41e31/src/lib/buffer.ts#L705">lib/buffer.ts:705</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -390,7 +402,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kognise/monch/blob/8801bf8/src/lib/buffer.ts#L72">lib/buffer.ts:72</a></li>
+									<li>Defined in <a href="https://github.com/kognise/monch/blob/7a41e31/src/lib/buffer.ts#L83">lib/buffer.ts:83</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -421,7 +433,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kognise/monch/blob/8801bf8/src/lib/buffer.ts#L96">lib/buffer.ts:96</a></li>
+									<li>Defined in <a href="https://github.com/kognise/monch/blob/7a41e31/src/lib/buffer.ts#L107">lib/buffer.ts:107</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -443,7 +455,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kognise/monch/blob/8801bf8/src/lib/buffer.ts#L82">lib/buffer.ts:82</a></li>
+									<li>Defined in <a href="https://github.com/kognise/monch/blob/7a41e31/src/lib/buffer.ts#L93">lib/buffer.ts:93</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -480,7 +492,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kognise/monch/blob/8801bf8/src/lib/buffer.ts#L108">lib/buffer.ts:108</a></li>
+									<li>Defined in <a href="https://github.com/kognise/monch/blob/7a41e31/src/lib/buffer.ts#L119">lib/buffer.ts:119</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -511,7 +523,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kognise/monch/blob/8801bf8/src/lib/buffer.ts#L121">lib/buffer.ts:121</a></li>
+									<li>Defined in <a href="https://github.com/kognise/monch/blob/7a41e31/src/lib/buffer.ts#L132">lib/buffer.ts:132</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -548,7 +560,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kognise/monch/blob/8801bf8/src/lib/buffer.ts#L166">lib/buffer.ts:166</a></li>
+									<li>Defined in <a href="https://github.com/kognise/monch/blob/7a41e31/src/lib/buffer.ts#L177">lib/buffer.ts:177</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -579,7 +591,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kognise/monch/blob/8801bf8/src/lib/buffer.ts#L144">lib/buffer.ts:144</a></li>
+									<li>Defined in <a href="https://github.com/kognise/monch/blob/7a41e31/src/lib/buffer.ts#L155">lib/buffer.ts:155</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -616,7 +628,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kognise/monch/blob/8801bf8/src/lib/buffer.ts#L177">lib/buffer.ts:177</a></li>
+									<li>Defined in <a href="https://github.com/kognise/monch/blob/7a41e31/src/lib/buffer.ts#L188">lib/buffer.ts:188</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -647,7 +659,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kognise/monch/blob/8801bf8/src/lib/buffer.ts#L189">lib/buffer.ts:189</a></li>
+									<li>Defined in <a href="https://github.com/kognise/monch/blob/7a41e31/src/lib/buffer.ts#L200">lib/buffer.ts:200</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -684,7 +696,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kognise/monch/blob/8801bf8/src/lib/buffer.ts#L238">lib/buffer.ts:238</a></li>
+									<li>Defined in <a href="https://github.com/kognise/monch/blob/7a41e31/src/lib/buffer.ts#L249">lib/buffer.ts:249</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -715,7 +727,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kognise/monch/blob/8801bf8/src/lib/buffer.ts#L214">lib/buffer.ts:214</a></li>
+									<li>Defined in <a href="https://github.com/kognise/monch/blob/7a41e31/src/lib/buffer.ts#L225">lib/buffer.ts:225</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -752,7 +764,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kognise/monch/blob/8801bf8/src/lib/buffer.ts#L249">lib/buffer.ts:249</a></li>
+									<li>Defined in <a href="https://github.com/kognise/monch/blob/7a41e31/src/lib/buffer.ts#L260">lib/buffer.ts:260</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -783,7 +795,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kognise/monch/blob/8801bf8/src/lib/buffer.ts#L261">lib/buffer.ts:261</a></li>
+									<li>Defined in <a href="https://github.com/kognise/monch/blob/7a41e31/src/lib/buffer.ts#L272">lib/buffer.ts:272</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -820,7 +832,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kognise/monch/blob/8801bf8/src/lib/buffer.ts#L319">lib/buffer.ts:319</a></li>
+									<li>Defined in <a href="https://github.com/kognise/monch/blob/7a41e31/src/lib/buffer.ts#L330">lib/buffer.ts:330</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -851,7 +863,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kognise/monch/blob/8801bf8/src/lib/buffer.ts#L291">lib/buffer.ts:291</a></li>
+									<li>Defined in <a href="https://github.com/kognise/monch/blob/7a41e31/src/lib/buffer.ts#L302">lib/buffer.ts:302</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -888,7 +900,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kognise/monch/blob/8801bf8/src/lib/buffer.ts#L330">lib/buffer.ts:330</a></li>
+									<li>Defined in <a href="https://github.com/kognise/monch/blob/7a41e31/src/lib/buffer.ts#L341">lib/buffer.ts:341</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -919,7 +931,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kognise/monch/blob/8801bf8/src/lib/buffer.ts#L710">lib/buffer.ts:710</a></li>
+									<li>Defined in <a href="https://github.com/kognise/monch/blob/7a41e31/src/lib/buffer.ts#L721">lib/buffer.ts:721</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -941,7 +953,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kognise/monch/blob/8801bf8/src/lib/buffer.ts#L587">lib/buffer.ts:587</a></li>
+									<li>Defined in <a href="https://github.com/kognise/monch/blob/7a41e31/src/lib/buffer.ts#L598">lib/buffer.ts:598</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -979,7 +991,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kognise/monch/blob/8801bf8/src/lib/buffer.ts#L572">lib/buffer.ts:572</a></li>
+									<li>Defined in <a href="https://github.com/kognise/monch/blob/7a41e31/src/lib/buffer.ts#L583">lib/buffer.ts:583</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1017,7 +1029,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kognise/monch/blob/8801bf8/src/lib/buffer.ts#L745">lib/buffer.ts:745</a></li>
+									<li>Defined in <a href="https://github.com/kognise/monch/blob/7a41e31/src/lib/buffer.ts#L756">lib/buffer.ts:756</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1039,7 +1051,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kognise/monch/blob/8801bf8/src/lib/buffer.ts#L752">lib/buffer.ts:752</a></li>
+									<li>Defined in <a href="https://github.com/kognise/monch/blob/7a41e31/src/lib/buffer.ts#L763">lib/buffer.ts:763</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1061,7 +1073,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kognise/monch/blob/8801bf8/src/lib/buffer.ts#L606">lib/buffer.ts:606</a></li>
+									<li>Defined in <a href="https://github.com/kognise/monch/blob/7a41e31/src/lib/buffer.ts#L617">lib/buffer.ts:617</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1095,7 +1107,7 @@ buffer.truncateLeft(<span class="hljs-number">2</span>)
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kognise/monch/blob/8801bf8/src/lib/buffer.ts#L626">lib/buffer.ts:626</a></li>
+									<li>Defined in <a href="https://github.com/kognise/monch/blob/7a41e31/src/lib/buffer.ts#L637">lib/buffer.ts:637</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1129,7 +1141,7 @@ buffer.truncateRight(<span class="hljs-number">2</span>)
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kognise/monch/blob/8801bf8/src/lib/buffer.ts#L669">lib/buffer.ts:669</a></li>
+									<li>Defined in <a href="https://github.com/kognise/monch/blob/7a41e31/src/lib/buffer.ts#L680">lib/buffer.ts:680</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1166,7 +1178,7 @@ buffer.truncateRight(<span class="hljs-number">2</span>)
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kognise/monch/blob/8801bf8/src/lib/buffer.ts#L684">lib/buffer.ts:684</a></li>
+									<li>Defined in <a href="https://github.com/kognise/monch/blob/7a41e31/src/lib/buffer.ts#L695">lib/buffer.ts:695</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1197,7 +1209,7 @@ buffer.truncateRight(<span class="hljs-number">2</span>)
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kognise/monch/blob/8801bf8/src/lib/buffer.ts#L641">lib/buffer.ts:641</a></li>
+									<li>Defined in <a href="https://github.com/kognise/monch/blob/7a41e31/src/lib/buffer.ts#L652">lib/buffer.ts:652</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1234,7 +1246,7 @@ buffer.truncateRight(<span class="hljs-number">2</span>)
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kognise/monch/blob/8801bf8/src/lib/buffer.ts#L658">lib/buffer.ts:658</a></li>
+									<li>Defined in <a href="https://github.com/kognise/monch/blob/7a41e31/src/lib/buffer.ts#L669">lib/buffer.ts:669</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1265,7 +1277,7 @@ buffer.truncateRight(<span class="hljs-number">2</span>)
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kognise/monch/blob/8801bf8/src/lib/buffer.ts#L344">lib/buffer.ts:344</a></li>
+									<li>Defined in <a href="https://github.com/kognise/monch/blob/7a41e31/src/lib/buffer.ts#L355">lib/buffer.ts:355</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1302,7 +1314,7 @@ buffer.truncateRight(<span class="hljs-number">2</span>)
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kognise/monch/blob/8801bf8/src/lib/buffer.ts#L383">lib/buffer.ts:383</a></li>
+									<li>Defined in <a href="https://github.com/kognise/monch/blob/7a41e31/src/lib/buffer.ts#L394">lib/buffer.ts:394</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1333,7 +1345,7 @@ buffer.truncateRight(<span class="hljs-number">2</span>)
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kognise/monch/blob/8801bf8/src/lib/buffer.ts#L364">lib/buffer.ts:364</a></li>
+									<li>Defined in <a href="https://github.com/kognise/monch/blob/7a41e31/src/lib/buffer.ts#L375">lib/buffer.ts:375</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1370,7 +1382,7 @@ buffer.truncateRight(<span class="hljs-number">2</span>)
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kognise/monch/blob/8801bf8/src/lib/buffer.ts#L394">lib/buffer.ts:394</a></li>
+									<li>Defined in <a href="https://github.com/kognise/monch/blob/7a41e31/src/lib/buffer.ts#L405">lib/buffer.ts:405</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1401,7 +1413,7 @@ buffer.truncateRight(<span class="hljs-number">2</span>)
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kognise/monch/blob/8801bf8/src/lib/buffer.ts#L406">lib/buffer.ts:406</a></li>
+									<li>Defined in <a href="https://github.com/kognise/monch/blob/7a41e31/src/lib/buffer.ts#L417">lib/buffer.ts:417</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1438,7 +1450,7 @@ buffer.truncateRight(<span class="hljs-number">2</span>)
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kognise/monch/blob/8801bf8/src/lib/buffer.ts#L449">lib/buffer.ts:449</a></li>
+									<li>Defined in <a href="https://github.com/kognise/monch/blob/7a41e31/src/lib/buffer.ts#L460">lib/buffer.ts:460</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1469,7 +1481,7 @@ buffer.truncateRight(<span class="hljs-number">2</span>)
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kognise/monch/blob/8801bf8/src/lib/buffer.ts#L428">lib/buffer.ts:428</a></li>
+									<li>Defined in <a href="https://github.com/kognise/monch/blob/7a41e31/src/lib/buffer.ts#L439">lib/buffer.ts:439</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1506,7 +1518,7 @@ buffer.truncateRight(<span class="hljs-number">2</span>)
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kognise/monch/blob/8801bf8/src/lib/buffer.ts#L460">lib/buffer.ts:460</a></li>
+									<li>Defined in <a href="https://github.com/kognise/monch/blob/7a41e31/src/lib/buffer.ts#L471">lib/buffer.ts:471</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1537,7 +1549,7 @@ buffer.truncateRight(<span class="hljs-number">2</span>)
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kognise/monch/blob/8801bf8/src/lib/buffer.ts#L472">lib/buffer.ts:472</a></li>
+									<li>Defined in <a href="https://github.com/kognise/monch/blob/7a41e31/src/lib/buffer.ts#L483">lib/buffer.ts:483</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1574,7 +1586,7 @@ buffer.truncateRight(<span class="hljs-number">2</span>)
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kognise/monch/blob/8801bf8/src/lib/buffer.ts#L524">lib/buffer.ts:524</a></li>
+									<li>Defined in <a href="https://github.com/kognise/monch/blob/7a41e31/src/lib/buffer.ts#L535">lib/buffer.ts:535</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1605,7 +1617,7 @@ buffer.truncateRight(<span class="hljs-number">2</span>)
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kognise/monch/blob/8801bf8/src/lib/buffer.ts#L499">lib/buffer.ts:499</a></li>
+									<li>Defined in <a href="https://github.com/kognise/monch/blob/7a41e31/src/lib/buffer.ts#L510">lib/buffer.ts:510</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1642,7 +1654,7 @@ buffer.truncateRight(<span class="hljs-number">2</span>)
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kognise/monch/blob/8801bf8/src/lib/buffer.ts#L535">lib/buffer.ts:535</a></li>
+									<li>Defined in <a href="https://github.com/kognise/monch/blob/7a41e31/src/lib/buffer.ts#L546">lib/buffer.ts:546</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
