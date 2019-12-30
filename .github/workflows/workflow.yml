@@ -1,6 +1,9 @@
 name: TypeScript CI
 
-on: [push]
+on:
+  push:	
+    branches:	
+      - master
 
 jobs:
   build:
@@ -29,9 +32,13 @@ jobs:
         flags: unittests
         fail_ci_if_error: false
     
-    - name: Publish documentation
+    - name: Build documentation
       run: |
-        git config user.name "TypeScript CI"
-        git config user.email "bot@kognise.dev"
         yarn doc:html
-        yarn doc:publish
+
+    - name: Publish documentation
+      uses: JamesIves/github-pages-deploy-action@releases/v3
+      with:
+        ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        BRANCH: gh-pages
+        FOLDER: build/docs
