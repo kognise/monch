@@ -31,4 +31,9 @@ jobs:
         token: ${{ secrets.CODECOV_TOKEN }}
         file: ./coverage/clover.xml
         flags: unittests
-        fail_ci_if_error: true
+        fail_ci_if_error: false
+    
+    - name: Publish documentation
+      run: |
+        yarn doc:html
+        yarn doc:publish
