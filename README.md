@@ -5,7 +5,7 @@
 </p>
 
 <p align='center'>
-	<a href='https://github.com/kognise/monch/blob/master/license.txt'>
+	<a href='https://github.com/kognise/monch/blob/master/LICENSE.md'>
 		<img src='https://img.shields.io/badge/license-MPL--2.0-brightgreen' alt='license' />
 	</a>
 	<a href='https://kognise.github.io/monch/'>
