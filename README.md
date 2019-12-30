@@ -11,15 +11,15 @@
 	<a href='https://kognise.github.io/monch/'>
 		<img src='https://img.shields.io/badge/typedoc-reference-informational' alt='typedoc' />
 	</a>
-	<a href='https://travis-ci.org/superwhiskers/crunch'>
-		<img src='https://travis-ci.org/superwhiskers/crunch.svg?branch=master' alt='travis' />
+	<a href='https://github.com/kognise/monch/actions'>
+		<img src='https://img.shields.io/github/workflow/status/kognise/monch/TypeScript%20CI' alt='github actions' />
 	</a>
-	<a href='https://codecov.io/gh/superwhiskers/crunch'>
-		<img src='https://codecov.io/gh/superwhiskers/crunch/branch/master/graph/badge.svg' alt='codecov' />
+	<a href='https://codecov.io/gh/kognise/monch'>
+		<img src='https://codecov.io/gh/kognise/monch/branch/master/graph/badge.svg' alt='codecov' />
 	</a>
-	<a href='https://repl.it/github/https://github.com/superwhiskers/crunch?ref=button'>
+	<!-- <a href='https://repl.it/github/https://github.com/superwhiskers/crunch?ref=button'>
 		<img src='https://img.shields.io/badge/try%20it%20on-repl.it-%2359646A.svg' alt='try it on repl.it' />
-	</a>
+	</a> -->
 </p>
 
 ## Features
@@ -32,12 +32,12 @@
 ## Example
 
 ```js
-import { MonchBuffer } from 'monch'
-
 const buffer = new MonchBuffer()
+const encoder = new TextEncoder()
+
 buffer.grow(12)
-buffer.writeBytesNext(MonchBuffer.fromString('hello, world'))
-console.log(buffer.toString())
+buffer.writeBytesNext(encoder.encode('hello, world'))
+console.log(buffer.toArray())
 ```
 
 ## Acknowledgements
