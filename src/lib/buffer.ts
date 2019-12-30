@@ -6,6 +6,17 @@ import {
   BufferUnderwriteError
 } from './error'
 
+/**
+ * The superfast buffer class that's the main part of Monch.
+ *
+ * Here's a simple example to try out:
+ * ```js
+ * const buffer = new MonchBuffer()
+ * buffer.grow(8)
+ * buffer.writeUint32BE(0x00, new Uint32Array([ 0xDEADBEEF ]))
+ * console.log(buffer.toArray())
+ * ```
+ */
 export class MonchBuffer {
   /**
    * The current read/write position in bytes.

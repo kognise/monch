@@ -394,9 +394,16 @@ test('other errors', () => {
   expect(() => buffer.grow(-1)).toThrow(BufferInvalidByteCountError)
 })
 
-test('example', () => {
+test('example 1', () => {
   const buffer = new MonchBuffer()
   buffer.grow(12)
   buffer.writeBytesNext(new TextEncoder().encode('hello, world'))
   expect(new TextDecoder().decode(buffer.toUint8Array())).toBe('hello, world')
+})
+
+test('example 2', () => {
+  const buffer = new MonchBuffer()
+  buffer.grow(4)
+  buffer.writeUint32BE(0x00, new Uint32Array([0xdeadbeef]))
+  expect(buffer.toArray()).toEqual([0xde, 0xad, 0xbe, 0xef])
 })
