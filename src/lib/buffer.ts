@@ -38,7 +38,7 @@ export class MonchBuffer {
   /**
    * @param slices You may optionally pass iterables that will be concatenated to initially populate the buffer
    */
-  constructor(...slices: Iterable<number>[]) {
+  constructor(...slices: Array<Iterable<number>>) {
     this.byteOffset = 0x00
     this.bitOffset = 0x00
 
