@@ -7,7 +7,6 @@ import {
 } from './error'
 
 export class MonchBuffer {
-
   /**
    * The current read/write position in bytes.
    */
