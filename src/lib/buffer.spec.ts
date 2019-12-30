@@ -1,4 +1,6 @@
+import { TextDecoder, TextEncoder } from 'util'
 import { MonchBuffer } from './buffer'
+import { BufferOverreadError, BufferUnderreadError, BufferInvalidByteCountError, BufferOverwriteError, BufferUnderwriteError } from './error'
 
 test('instantiation', () => {
   const buffer1 = new MonchBuffer([0x00, 0x00, 0x00, 0x00])
@@ -59,7 +61,6 @@ test('resetting', () => {
   const buffer = new MonchBuffer([0x00, 0x00, 0x00, 0x00])
   buffer.seekByte(0x02)
   buffer.reset()
-  expect(buffer.typedArray.length).toBe(0)
   expect(buffer.byteOffset).toBe(0x00)
   expect(buffer.byteCapacity).toBe(0)
   expect(buffer.bitOffset).toBe(0x00)
@@ -221,11 +222,43 @@ test.todo('writing bits')
 
 test.todo('writing next bits')
 
-test.todo('errors')
+test('errors', () => {
+  const buffer = new MonchBuffer([ 0x00, 0x00, 0x00, 0x00 ])
+
+  expect(() => buffer.readBytes(0x00, 8)).toThrow(BufferOverreadError)
+  expect(() => buffer.readBytes(0x05, 1)).toThrow(BufferOverreadError)
+  expect(() => buffer.readBytes(-0x01, 1)).toThrow(BufferUnderreadError)
+
+  expect(() => buffer.readUint16BE(0x00, 4)).toThrow(BufferOverreadError)
+  expect(() => buffer.readUint16BE(-0x02, 1)).toThrow(BufferUnderreadError)
+  expect(() => buffer.readUint32BE(0x00, 2)).toThrow(BufferOverreadError)
+  expect(() => buffer.readUint32BE(-0x04, 1)).toThrow(BufferUnderreadError)
+  expect(() => buffer.readUint64BE(0x00, 1)).toThrow(BufferOverreadError)
+  expect(() => buffer.readUint64BE(-0x08, 1)).toThrow(BufferUnderreadError)
+
+  expect(() => buffer.readUint16LE(0x00, 4)).toThrow(BufferOverreadError)
+  expect(() => buffer.readUint16LE(-0x02, 1)).toThrow(BufferUnderreadError)
+  expect(() => buffer.readUint32LE(0x00, 2)).toThrow(BufferOverreadError)
+  expect(() => buffer.readUint32LE(-0x04, 1)).toThrow(BufferUnderreadError)
+  expect(() => buffer.readUint64LE(0x00, 1)).toThrow(BufferOverreadError)
+  expect(() => buffer.readUint64LE(-0x08, 1)).toThrow(BufferUnderreadError)
+
+  
+  expect(() => buffer.writeByte(0x04, 0x00)).toThrow(BufferOverwriteError)
+  expect(() => buffer.writeByte(-0x01, 0x00)).toThrow(BufferUnderwriteError)
+
+  expect(() => buffer.writeBytes(0x00, new Uint8Array([ 0x00, 0x00, 0x00, 0x00, 0x00 ]))).toThrow(BufferOverwriteError)
+  expect(() => buffer.writeBytes(0x05, new Uint8Array([ 0x00 ]))).toThrow(BufferOverwriteError)
+  expect(() => buffer.writeBytes(-0x01, new Uint8Array([ 0x00 ]))).toThrow(BufferUnderwriteError)
+
+  expect(() => buffer.truncateLeft(-1)).toThrow(BufferInvalidByteCountError)
+  expect(() => buffer.truncateRight(-1)).toThrow(BufferInvalidByteCountError)
+  expect(() => buffer.grow(-1)).toThrow(BufferInvalidByteCountError)
+})
 
 test('example', () => {
   const buffer = new MonchBuffer()
   buffer.grow(12)
-  buffer.writeBytesNext(MonchBuffer.fromString('hello, world'))
-  expect(buffer.toString()).toBe('hello, world')
+  buffer.writeBytesNext(new TextEncoder().encode('hello, world'))
+  expect(new TextDecoder().decode(buffer.toUint8Array())).toBe('hello, world')
 })
