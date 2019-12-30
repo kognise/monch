@@ -155,6 +155,75 @@ test('reading next thicc fancy numbers', () => {
   expect(buffer.byteOffset).toBe(8)
 })
 
+test('writing thicc fancy numbers', () => {
+  const buffer = new MonchBuffer([
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00
+  ])
+
+  buffer.writeUint16BE(0x00, new Uint16Array([0x0100, 0x0100]))
+  expect(buffer.readByte(0x00)).toBe(0x01)
+  expect(buffer.readByte(0x02)).toBe(0x01)
+  buffer.writeUint16LE(0x00, new Uint16Array([0x0001, 0x0001]))
+  expect(buffer.readByte(0x00)).toBe(0x01)
+  expect(buffer.readByte(0x02)).toBe(0x01)
+
+  buffer.writeUint32BE(0x00, new Uint32Array([0x01000000]))
+  expect(buffer.readByte(0x00)).toBe(0x01)
+  buffer.writeUint32LE(0x00, new Uint32Array([0x00000001]))
+  expect(buffer.readByte(0x00)).toBe(0x01)
+
+  buffer.writeUint64BE(0x00, new BigUint64Array([BigInt(0x0100000000000000)]))
+  expect(buffer.readByte(0x00)).toBe(0x01)
+  buffer.writeUint64LE(0x00, new BigUint64Array([BigInt(0x0000000000000001)]))
+  expect(buffer.readByte(0x00)).toBe(0x01)
+})
+
+test('writing next thicc fancy numbers', () => {
+  const buffer = new MonchBuffer([
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00
+  ])
+
+  buffer.writeUint16BENext(new Uint16Array([0x0100]))
+  expect(buffer.byteOffset).toBe(2)
+  expect(buffer.readByte(0x00)).toBe(0x01)
+  buffer.seekByte(0x00)
+  buffer.writeUint16LENext(new Uint16Array([0x0001]))
+  expect(buffer.byteOffset).toBe(2)
+  expect(buffer.readByte(0x00)).toBe(0x01)
+  buffer.seekByte(0x00)
+
+  buffer.writeUint32BENext(new Uint32Array([0x01000000]))
+  expect(buffer.byteOffset).toBe(4)
+  expect(buffer.readByte(0x00)).toBe(0x01)
+  buffer.seekByte(0x00)
+  buffer.writeUint32LENext(new Uint32Array([0x00000001]))
+  expect(buffer.byteOffset).toBe(4)
+  expect(buffer.readByte(0x00)).toBe(0x01)
+  buffer.seekByte(0x00)
+
+  buffer.writeUint64BENext(new BigUint64Array([BigInt(0x0100000000000000)]))
+  expect(buffer.byteOffset).toBe(8)
+  expect(buffer.readByte(0x00)).toBe(0x01)
+  buffer.seekByte(0x00)
+  buffer.writeUint64LENext(new BigUint64Array([BigInt(0x0000000000000001)]))
+  expect(buffer.byteOffset).toBe(8)
+  expect(buffer.readByte(0x00)).toBe(0x01)
+})
+
 test('truncating left', () => {
   const buffer = new MonchBuffer([0x01, 0x02])
   buffer.truncateLeft(1)
@@ -228,7 +297,7 @@ test.todo('writing bits')
 
 test.todo('writing next bits')
 
-test('errors', () => {
+test('reading errors', () => {
   const buffer = new MonchBuffer([0x00, 0x00, 0x00, 0x00])
 
   expect(() => buffer.readBytes(0x00, 8)).toThrow(BufferOverreadError)
@@ -248,6 +317,10 @@ test('errors', () => {
   expect(() => buffer.readUint32LE(-0x04, 1)).toThrow(BufferUnderreadError)
   expect(() => buffer.readUint64LE(0x00, 1)).toThrow(BufferOverreadError)
   expect(() => buffer.readUint64LE(-0x08, 1)).toThrow(BufferUnderreadError)
+})
+
+test('writing errors', () => {
+  const buffer = new MonchBuffer([0x00, 0x00, 0x00, 0x00])
 
   expect(() => buffer.writeByte(0x04, 0x00)).toThrow(BufferOverwriteError)
   expect(() => buffer.writeByte(-0x01, 0x00)).toThrow(BufferUnderwriteError)
@@ -261,6 +334,60 @@ test('errors', () => {
   expect(() => buffer.writeBytes(-0x01, new Uint8Array([0x00]))).toThrow(
     BufferUnderwriteError
   )
+
+  expect(() =>
+    buffer.writeUint16BE(
+      0x00,
+      new Uint16Array([0x0000, 0x0000, 0x0000, 0x0000])
+    )
+  ).toThrow(BufferOverwriteError)
+  expect(() => buffer.writeUint16BE(-0x02, new Uint16Array([0x0000]))).toThrow(
+    BufferUnderwriteError
+  )
+  expect(() =>
+    buffer.writeUint32BE(0x00, new Uint32Array([0x00000000, 0x00000000]))
+  ).toThrow(BufferOverwriteError)
+  expect(() =>
+    buffer.writeUint32BE(-0x04, new Uint32Array([0x00000000]))
+  ).toThrow(BufferUnderwriteError)
+  expect(() =>
+    buffer.writeUint64BE(0x00, new BigUint64Array([BigInt(0x0000000000000000)]))
+  ).toThrow(BufferOverwriteError)
+  expect(() =>
+    buffer.writeUint64BE(
+      -0x08,
+      new BigUint64Array([BigInt(0x0000000000000000)])
+    )
+  ).toThrow(BufferUnderwriteError)
+
+  expect(() =>
+    buffer.writeUint16LE(
+      0x00,
+      new Uint16Array([0x0000, 0x0000, 0x0000, 0x0000])
+    )
+  ).toThrow(BufferOverwriteError)
+  expect(() => buffer.writeUint16LE(-0x02, new Uint16Array([0x0000]))).toThrow(
+    BufferUnderwriteError
+  )
+  expect(() =>
+    buffer.writeUint32LE(0x00, new Uint32Array([0x00000000, 0x00000000]))
+  ).toThrow(BufferOverwriteError)
+  expect(() =>
+    buffer.writeUint32LE(-0x04, new Uint32Array([0x00000000]))
+  ).toThrow(BufferUnderwriteError)
+  expect(() =>
+    buffer.writeUint64LE(0x00, new BigUint64Array([BigInt(0x0000000000000000)]))
+  ).toThrow(BufferOverwriteError)
+  expect(() =>
+    buffer.writeUint64LE(
+      -0x08,
+      new BigUint64Array([BigInt(0x0000000000000000)])
+    )
+  ).toThrow(BufferUnderwriteError)
+})
+
+test('other errors', () => {
+  const buffer = new MonchBuffer([0x00, 0x00, 0x00, 0x00])
 
   expect(() => buffer.truncateLeft(-1)).toThrow(BufferInvalidByteCountError)
   expect(() => buffer.truncateRight(-1)).toThrow(BufferInvalidByteCountError)

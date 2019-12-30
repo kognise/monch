@@ -26,6 +26,7 @@ export class MonchBuffer {
    * The current buffer size in bits.
    */
   public bitCapacity: number
+
   /**
    * @ignore
    *
@@ -252,7 +253,7 @@ export class MonchBuffer {
   }
 
   /**
-   * Reads a `Uint64Array` from the buffer at the specified offset in big-endian without modifying the internal position.
+   * Reads a `BigUint64Array` from the buffer at the specified offset in big-endian without modifying the internal position.
    *
    * @param offset An offset
    * @param count  How many uint64s to read
@@ -282,7 +283,7 @@ export class MonchBuffer {
   }
 
   /**
-   * Reads a `Uint64Array` from the buffer at the specified offset in little-endian without modifying the internal position.
+   * Reads a `BigUint64Array` from the buffer at the specified offset in little-endian without modifying the internal position.
    *
    * @param offset An offset
    * @param count  How many uint64s to read
@@ -311,7 +312,7 @@ export class MonchBuffer {
   }
 
   /**
-   * Reads a `Uint64Array` from current offset in big-endian and moves the offset forward the amount of bytes read.
+   * Reads a `BigUint64Array` from current offset in big-endian and moves the offset forward the amount of bytes read.
    *
    * @param count How many uint64s to read
    */
@@ -322,13 +323,218 @@ export class MonchBuffer {
   }
 
   /**
-   * Reads a `Uint64Array` from current offset in little-endian and moves the offset forward the amount of bytes read.
+   * Reads a `BigUint64Array` from current offset in little-endian and moves the offset forward the amount of bytes read.
    *
    * @param count How many uint64s to read
    */
   public readUint64LENext(count = 1) {
     const temp = this.readUint64LE(this.byteOffset, count)
     this.seekByte(count * 8, true)
+    return temp
+  }
+
+  // TODO: check if offsets should be BigInts
+
+  /**
+   * Writes a `Uint16Array` to the buffer at the specified offset in big-endian without modifying the internal position.
+   *
+   * @param offset An offset
+   * @param data   The bytes to write
+   */
+  public writeUint16BE(offset: number, data: Uint16Array) {
+    if (offset + data.length * 2 > this.byteCapacity) {
+      throw new BufferOverwriteError()
+    }
+    if (offset < 0x00) {
+      throw new BufferUnderwriteError()
+    }
+
+    for (let i = 0; i < data.length; i++) {
+      this.typedArray[offset + i * 2] = data[i] >> 8
+      this.typedArray[offset + i * 2 + 1] = data[i]
+    }
+  }
+
+  /**
+   * Writes a `Uint16Array` to the buffer at the specified offset in little-endian without modifying the internal position.
+   *
+   * @param offset An offset
+   * @param data   The bytes to write
+   */
+  public writeUint16LE(offset: number, data: Uint16Array) {
+    if (offset + data.length * 2 > this.byteCapacity) {
+      throw new BufferOverwriteError()
+    }
+    if (offset < 0x00) {
+      throw new BufferUnderwriteError()
+    }
+
+    for (let i = 0; i < data.length; i++) {
+      this.typedArray[offset + i * 2] = data[i]
+      this.typedArray[offset + i * 2 + 1] = data[i] >> 8
+    }
+  }
+
+  /**
+   * Writes a `Uint16Array` to the buffer at the specified offset in big-endian and moves the internal position forward the amount of bytes written.
+   *
+   * @param data The bytes to write
+   */
+  public writeUint16BENext(data: Uint16Array) {
+    const temp = this.writeUint16BE(this.byteOffset, data)
+    this.seekByte(data.length * 2, true)
+    return temp
+  }
+
+  /**
+   * Writes a `Uint16Array` to the buffer at the specified offset in little-endian and moves the internal position forward the amount of bytes written.
+   *
+   * @param data The bytes to write
+   */
+  public writeUint16LENext(data: Uint16Array) {
+    const temp = this.writeUint16LE(this.byteOffset, data)
+    this.seekByte(data.length * 2, true)
+    return temp
+  }
+
+  /**
+   * Writes a `Uint32Array` to the buffer at the specified offset in big-endian without modifying the internal position.
+   *
+   * @param offset An offset
+   * @param data   The bytes to write
+   */
+  public writeUint32BE(offset: number, data: Uint32Array) {
+    if (offset + data.length * 4 > this.byteCapacity) {
+      throw new BufferOverwriteError()
+    }
+    if (offset < 0x00) {
+      throw new BufferUnderwriteError()
+    }
+
+    for (let i = 0; i < data.length; i++) {
+      this.typedArray[offset + i * 4] = data[i] >> 24
+      this.typedArray[offset + i * 4 + 1] = data[i] >> 16
+      this.typedArray[offset + i * 4 + 2] = data[i] >> 8
+      this.typedArray[offset + i * 4 + 3] = data[i]
+    }
+  }
+
+  /**
+   * Writes a `Uint32Array` to the buffer at the specified offset in little-endian without modifying the internal position.
+   *
+   * @param offset An offset
+   * @param data   The bytes to write
+   */
+  public writeUint32LE(offset: number, data: Uint32Array) {
+    if (offset + data.length * 4 > this.byteCapacity) {
+      throw new BufferOverwriteError()
+    }
+    if (offset < 0x00) {
+      throw new BufferUnderwriteError()
+    }
+
+    for (let i = 0; i < data.length; i++) {
+      this.typedArray[offset + i * 4] = data[i]
+      this.typedArray[offset + i * 4 + 1] = data[i] >> 8
+      this.typedArray[offset + i * 4 + 2] = data[i] >> 16
+      this.typedArray[offset + i * 4 + 3] = data[i] >> 24
+    }
+  }
+
+  /**
+   * Writes a `Uint32Array` to the buffer at the specified offset in big-endian and moves the internal position forward the amount of bytes written.
+   *
+   * @param data The bytes to write
+   */
+  public writeUint32BENext(data: Uint32Array) {
+    const temp = this.writeUint32BE(this.byteOffset, data)
+    this.seekByte(data.length * 4, true)
+    return temp
+  }
+
+  /**
+   * Writes a `Uint32Array` to the buffer at the specified offset in little-endian and moves the internal position forward the amount of bytes written.
+   *
+   * @param data The bytes to write
+   */
+  public writeUint32LENext(data: Uint32Array) {
+    const temp = this.writeUint32LE(this.byteOffset, data)
+    this.seekByte(data.length * 4, true)
+    return temp
+  }
+
+  /**
+   * Writes a `BigUint64Array` to the buffer at the specified offset in big-endian without modifying the internal position.
+   *
+   * @param offset An offset
+   * @param data   The bytes to write
+   */
+  public writeUint64BE(offset: number, data: BigUint64Array) {
+    if (offset + data.length * 8 > this.byteCapacity) {
+      throw new BufferOverwriteError()
+    }
+    if (offset < 0x00) {
+      throw new BufferUnderwriteError()
+    }
+
+    for (let i = 0; i < data.length; i++) {
+      // TODO: look into potential speed improvements
+      this.typedArray[offset + i * 8] = Number(data[i] >> BigInt(56))
+      this.typedArray[offset + i * 8 + 1] = Number(data[i] >> BigInt(48))
+      this.typedArray[offset + i * 8 + 2] = Number(data[i] >> BigInt(40))
+      this.typedArray[offset + i * 8 + 3] = Number(data[i] >> BigInt(32))
+      this.typedArray[offset + i * 8 + 4] = Number(data[i] >> BigInt(24))
+      this.typedArray[offset + i * 8 + 5] = Number(data[i] >> BigInt(16))
+      this.typedArray[offset + i * 8 + 6] = Number(data[i] >> BigInt(8))
+      this.typedArray[offset + i * 8 + 7] = Number(data[i])
+    }
+  }
+
+  /**
+   * Writes a `BigUint64Array` to the buffer at the specified offset in little-endian without modifying the internal position.
+   *
+   * @param offset An offset
+   * @param data   The bytes to write
+   */
+  public writeUint64LE(offset: number, data: BigUint64Array) {
+    if (offset + data.length * 8 > this.byteCapacity) {
+      throw new BufferOverwriteError()
+    }
+    if (offset < 0x00) {
+      throw new BufferUnderwriteError()
+    }
+
+    for (let i = 0; i < data.length; i++) {
+      this.typedArray[offset + i * 8] = Number(data[i])
+      this.typedArray[offset + i * 8 + 1] = Number(data[i] >> BigInt(8))
+      this.typedArray[offset + i * 8 + 2] = Number(data[i] >> BigInt(16))
+      this.typedArray[offset + i * 8 + 3] = Number(data[i] >> BigInt(24))
+      this.typedArray[offset + i * 8 + 4] = Number(data[i] >> BigInt(32))
+      this.typedArray[offset + i * 8 + 5] = Number(data[i] >> BigInt(40))
+      this.typedArray[offset + i * 8 + 6] = Number(data[i] >> BigInt(48))
+      this.typedArray[offset + i * 8 + 7] = Number(data[i] >> BigInt(56))
+    }
+  }
+
+  /**
+   * Writes a `BigUint64Array` to the buffer at the specified offset in big-endian and moves the internal position forward the amount of bytes written.
+   *
+   * @param data The bytes to write
+   */
+  public writeUint64BENext(data: BigUint64Array) {
+    const temp = this.writeUint64BE(this.byteOffset, data)
+    this.seekByte(data.length * 8, true)
+    return temp
+  }
+
+  /**
+   * Writes a `BigUint64Array` to the buffer at the specified offset in little-endian and moves the internal position forward the amount of bytes written.
+   *
+   * @param data The bytes to write
+   */
+  public writeUint64LENext(data: BigUint64Array) {
+    const temp = this.writeUint64LE(this.byteOffset, data)
+    this.seekByte(data.length * 8, true)
     return temp
   }
 
@@ -447,7 +653,7 @@ export class MonchBuffer {
   /**
    * Writes bytes to the buffer at the current offset and moves the current position forward the amount of bytes written.
    *
-   * @param data  The bytes to write
+   * @param data The bytes to write
    */
   public writeBytesNext(data: Uint8Array) {
     this.writeBytes(this.byteOffset, data)
