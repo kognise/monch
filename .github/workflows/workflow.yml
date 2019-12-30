@@ -35,5 +35,6 @@ jobs:
     
     - name: Publish documentation
       run: |
+        git config user.name "TypeScript CI"
         yarn doc:html
         yarn doc:publish
