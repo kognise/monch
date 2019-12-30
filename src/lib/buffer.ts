@@ -13,32 +13,32 @@ export class MonchBuffer {
   /**
    * @ignore
    */
-  public readonly typedArray: Uint8Array
+  public typedArray: Uint8Array
 
   /**
    * The current read/write position in bytes.
    */
-  public readonly byteOffset: number
+  public byteOffset: number
 
   /**
    * The current buffer size in bytes.
    */
-  public readonly byteCapacity: number
+  public byteCapacity: number
 
   /**
    * The current read/write position in bits.
    */
-  public readonly bitOffset: number
+  public bitOffset: number
 
   /**
    * The current buffer size in bits.
    */
-  public readonly bitCapacity: number
+  public bitCapacity: number
 
   /**
    * @param slices You may optionally pass iterables that will be concatenated to initially populate the buffer
    */
-  constructor(...slices: ReadonlyArray<Iterable<number>>) {
+  constructor(...slices: Iterable<number>[]) {
     this.byteOffset = 0x00
     this.bitOffset = 0x00
 
@@ -128,7 +128,7 @@ export class MonchBuffer {
     }
 
     const temp = new Uint16Array(count)
-    for (const i = 0; i < count; i++) {
+    for (let i = 0; i < count; i++) {
       temp[i] =
         this.typedArray[offset + (1 + i * 2)] |
         (this.typedArray[offset + i * 2] << 8)
@@ -151,7 +151,7 @@ export class MonchBuffer {
     }
 
     const temp = new Uint16Array(count)
-    for (const i = 0; i < count; i++) {
+    for (let i = 0; i < count; i++) {
       temp[i] =
         this.typedArray[offset + i * 2] |
         (this.typedArray[offset + (1 + i * 2)] << 8)
@@ -196,7 +196,7 @@ export class MonchBuffer {
     }
 
     const temp = new Uint32Array(count)
-    for (const i = 0; i < count; i++) {
+    for (let i = 0; i < count; i++) {
       temp[i] =
         this.typedArray[offset + (3 + i * 4)] |
         (this.typedArray[offset + (2 + i * 4)] << 8) |
@@ -221,7 +221,7 @@ export class MonchBuffer {
     }
 
     const temp = new Uint32Array(count)
-    for (const i = 0; i < count; i++) {
+    for (let i = 0; i < count; i++) {
       temp[i] =
         this.typedArray[offset + i * 4] |
         (this.typedArray[offset + (1 + i * 4)] << 8) |
@@ -268,7 +268,7 @@ export class MonchBuffer {
     }
 
     const temp = new BigUint64Array(count)
-    for (const i = 0; i < count; i++) {
+    for (let i = 0; i < count; i++) {
       // TODO: look into BigInt optimization opportunities
       temp[i] =
         BigInt(this.typedArray[offset + (7 + i * 8)]) |
@@ -298,7 +298,7 @@ export class MonchBuffer {
     }
 
     const temp = new BigUint64Array(count)
-    for (const i = 0; i < count; i++) {
+    for (let i = 0; i < count; i++) {
       temp[i] =
         BigInt(this.typedArray[offset + i * 8]) |
         (BigInt(this.typedArray[offset + (1 + i * 8)]) << BigInt(8)) |
