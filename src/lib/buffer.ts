@@ -1,38 +1,38 @@
 import {
+  BufferInvalidByteCountError,
   BufferOverreadError,
-  BufferUnderreadError,
   BufferOverwriteError,
-  BufferUnderwriteError,
-  BufferInvalidByteCountError
+  BufferUnderreadError,
+  BufferUnderwriteError
 } from './error'
 
 export class MonchBuffer {
-  /**
-   * @ignore
-   * 
-   * The internal data store.
-   */
-  private typedArray: Uint8Array
 
   /**
    * The current read/write position in bytes.
    */
-  byteOffset: number
+  public byteOffset: number
 
   /**
    * The current buffer size in bytes.
    */
-  byteCapacity: number
+  public byteCapacity: number
 
   /**
    * The current read/write position in bits.
    */
-  bitOffset: number
+  public bitOffset: number
 
   /**
    * The current buffer size in bits.
    */
-  bitCapacity: number
+  public bitCapacity: number
+  /**
+   * @ignore
+   *
+   * The internal data store.
+   */
+  private typedArray: Uint8Array
 
   /**
    * @param slices You may optionally pass iterables that will be concatenated to initially populate the buffer
@@ -69,7 +69,7 @@ export class MonchBuffer {
    *
    * @param offset An offset
    */
-  readByte(offset: number) {
+  public readByte(offset: number) {
     return this.readBytes(offset, 1)[0]
   }
 
@@ -79,7 +79,7 @@ export class MonchBuffer {
    * @param offset An offset
    * @param count  How many bytes to read
    */
-  readBytes(offset: number, count: number) {
+  public readBytes(offset: number, count: number) {
     if (offset + count > this.byteCapacity) {
       throw new BufferOverreadError()
     }
@@ -93,7 +93,7 @@ export class MonchBuffer {
   /**
    * Returns the next byte from the current offset and moves the offset forward a byte.
    */
-  readByteNext() {
+  public readByteNext() {
     // TODO: explore possible optimizations
     const temp = this.readByte(this.byteOffset)
     this.seekByte(1, true)
@@ -105,7 +105,7 @@ export class MonchBuffer {
    *
    * @param count How many bytes to read
    */
-  readBytesNext(count: number) {
+  public readBytesNext(count: number) {
     // TODO: explore possible optimizations
     const temp = this.readBytes(this.byteOffset, count)
     this.seekByte(count, true)
@@ -118,7 +118,7 @@ export class MonchBuffer {
    * @param offset An offset
    * @param count  How many uint16s to read
    */
-  readUint16BE(offset: number, count = 1) {
+  public readUint16BE(offset: number, count = 1) {
     if (offset + count * 2 > this.byteCapacity) {
       throw new BufferOverreadError()
     }
@@ -141,7 +141,7 @@ export class MonchBuffer {
    * @param offset An offset
    * @param count  How many uint16s to read
    */
-  readUint16LE(offset: number, count = 1) {
+  public readUint16LE(offset: number, count = 1) {
     if (offset + count * 2 > this.byteCapacity) {
       throw new BufferOverreadError()
     }
@@ -163,7 +163,7 @@ export class MonchBuffer {
    *
    * @param count How many uint16s to read
    */
-  readUint16BENext(count = 1) {
+  public readUint16BENext(count = 1) {
     const temp = this.readUint16BE(this.byteOffset, count)
     this.seekByte(count * 2, true)
     return temp
@@ -174,7 +174,7 @@ export class MonchBuffer {
    *
    * @param count How many uint16s to read
    */
-  readUint16LENext(count = 1) {
+  public readUint16LENext(count = 1) {
     const temp = this.readUint16LE(this.byteOffset, count)
     this.seekByte(count * 2, true)
     return temp
@@ -186,7 +186,7 @@ export class MonchBuffer {
    * @param offset An offset
    * @param count  How many uint32s to read
    */
-  readUint32BE(offset: number, count = 1) {
+  public readUint32BE(offset: number, count = 1) {
     if (offset + count * 4 > this.byteCapacity) {
       throw new BufferOverreadError()
     }
@@ -211,7 +211,7 @@ export class MonchBuffer {
    * @param offset An offset
    * @param count  How many uint32s to read
    */
-  readUint32LE(offset: number, count = 1) {
+  public readUint32LE(offset: number, count = 1) {
     if (offset + count * 4 > this.byteCapacity) {
       throw new BufferOverreadError()
     }
@@ -235,7 +235,7 @@ export class MonchBuffer {
    *
    * @param count How many uint32s to read
    */
-  readUint32BENext(count = 1) {
+  public readUint32BENext(count = 1) {
     const temp = this.readUint32BE(this.byteOffset, count)
     this.seekByte(count * 4, true)
     return temp
@@ -246,7 +246,7 @@ export class MonchBuffer {
    *
    * @param count How many uint32s to read
    */
-  readUint32LENext(count = 1) {
+  public readUint32LENext(count = 1) {
     const temp = this.readUint32LE(this.byteOffset, count)
     this.seekByte(count * 4, true)
     return temp
@@ -258,7 +258,7 @@ export class MonchBuffer {
    * @param offset An offset
    * @param count  How many uint64s to read
    */
-  readUint64BE(offset: number, count = 1) {
+  public readUint64BE(offset: number, count = 1) {
     if (offset + count * 8 > this.byteCapacity) {
       throw new BufferOverreadError()
     }
@@ -288,7 +288,7 @@ export class MonchBuffer {
    * @param offset An offset
    * @param count  How many uint64s to read
    */
-  readUint64LE(offset: number, count = 1) {
+  public readUint64LE(offset: number, count = 1) {
     if (offset + count * 8 > this.byteCapacity) {
       throw new BufferOverreadError()
     }
@@ -316,7 +316,7 @@ export class MonchBuffer {
    *
    * @param count How many uint64s to read
    */
-  readUint64BENext(count = 1) {
+  public readUint64BENext(count = 1) {
     const temp = this.readUint64BE(this.byteOffset, count)
     this.seekByte(count * 8, true)
     return temp
@@ -327,7 +327,7 @@ export class MonchBuffer {
    *
    * @param count How many uint64s to read
    */
-  readUint64LENext(count = 1) {
+  public readUint64LENext(count = 1) {
     const temp = this.readUint64LE(this.byteOffset, count)
     this.seekByte(count * 8, true)
     return temp
@@ -338,7 +338,7 @@ export class MonchBuffer {
    *
    * @param offset An offset
    */
-  afterByte(offset?: number) {
+  public afterByte(offset?: number) {
     if (offset) {
       return this.byteCapacity - offset - 1
     }
@@ -350,7 +350,7 @@ export class MonchBuffer {
    *
    * @param offset An offset
    */
-  afterBit(offset?: number) {
+  public afterBit(offset?: number) {
     if (offset) {
       return this.bitCapacity - offset - 1
     }
@@ -364,7 +364,7 @@ export class MonchBuffer {
    * @param offset   An offset
    * @param relative Whether or not to seek relative to the current position
    */
-  seekByte(offset: number, relative = false) {
+  public seekByte(offset: number, relative = false) {
     if (relative) {
       this.byteOffset += offset
     } else {
@@ -379,7 +379,7 @@ export class MonchBuffer {
    * @param offset   An offset
    * @param relative Whether or not to seek relative to the current position
    */
-  seekBit(offset: number, relative = false) {
+  public seekBit(offset: number, relative = false) {
     if (relative) {
       this.bitOffset += offset
     } else {
@@ -398,7 +398,7 @@ export class MonchBuffer {
    *
    * @param amount The amount of items to remove
    */
-  truncateLeft(amount: number) {
+  public truncateLeft(amount: number) {
     if (amount < 0) {
       throw new BufferInvalidByteCountError()
     }
@@ -418,7 +418,7 @@ export class MonchBuffer {
    *
    * @param amount The amount of items to remove
    */
-  truncateRight(amount: number) {
+  public truncateRight(amount: number) {
     if (amount < 0) {
       throw new BufferInvalidByteCountError()
     }
@@ -433,7 +433,7 @@ export class MonchBuffer {
    * @param offset An offset
    * @param data   The bytes to write
    */
-  writeBytes(offset: number, data: Uint8Array) {
+  public writeBytes(offset: number, data: Uint8Array) {
     if (offset + data.length > this.byteCapacity) {
       throw new BufferOverwriteError()
     }
@@ -450,7 +450,7 @@ export class MonchBuffer {
    *
    * @param data  The bytes to write
    */
-  writeBytesNext(data: Uint8Array) {
+  public writeBytesNext(data: Uint8Array) {
     this.writeBytes(this.byteOffset, data)
     this.seekByte(data.length, true)
   }
@@ -461,7 +461,7 @@ export class MonchBuffer {
    * @param offset An offset
    * @param byte   The byte to write
    */
-  writeByte(offset: number, byte: number) {
+  public writeByte(offset: number, byte: number) {
     if (offset + 1 > this.byteCapacity) {
       throw new BufferOverwriteError()
     }
@@ -476,7 +476,7 @@ export class MonchBuffer {
    *
    * @param byte The byte to write
    */
-  writeByteNext(byte: number) {
+  public writeByteNext(byte: number) {
     this.writeByte(this.byteOffset, byte)
     this.seekByte(1, true)
   }
@@ -486,7 +486,7 @@ export class MonchBuffer {
    *
    * @param amount The amount to increase the capacity by
    */
-  grow(amount: number) {
+  public grow(amount: number) {
     if (amount < 0) {
       throw new BufferInvalidByteCountError()
     }
@@ -502,7 +502,7 @@ export class MonchBuffer {
   /**
    * Empties the buffer and resets the read/write offsets to the beginning.
    */
-  reset() {
+  public reset() {
     this.typedArray = new Uint8Array()
     this.byteOffset = 0x00
     this.byteCapacity = 0
@@ -513,14 +513,14 @@ export class MonchBuffer {
   /**
    * Moves the bit offset to the the byte offset.
    */
-  alignBit() {
+  public alignBit() {
     this.bitOffset = this.byteOffset * 8
   }
 
   /**
    * Moves the byte offset to the the bit offset, truncating the position if it isn't a whole number.
    */
-  alignByte() {
+  public alignByte() {
     // The ~~ truncates the number to be whole
     this.byteOffset = ~~(this.bitOffset / 8)
   }
@@ -529,7 +529,7 @@ export class MonchBuffer {
    * @ignore
    * Forcefully updates the cached internal statistics of the buffer.
    */
-  refresh() {
+  public refresh() {
     this.byteCapacity = this.typedArray.length
     this.bitCapacity = this.typedArray.length * 8
   }
@@ -537,14 +537,14 @@ export class MonchBuffer {
   /**
    * Returns the buffer converted to an array.
    */
-  toArray() {
+  public toArray() {
     return Array.from(this.typedArray)
   }
 
   /**
    * Returns a copy of the buffer's internal `Uint8Array`.
    */
-  toUint8Array() {
+  public toUint8Array() {
     return this.typedArray.slice()
   }
 }

@@ -1,3 +1,5 @@
+/* tslint:disable:max-classes-per-file */
+
 import { CustomError } from 'ts-custom-error'
 
 /**

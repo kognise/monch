@@ -1,6 +1,12 @@
 import { TextDecoder, TextEncoder } from 'util'
 import { MonchBuffer } from './buffer'
-import { BufferOverreadError, BufferUnderreadError, BufferInvalidByteCountError, BufferOverwriteError, BufferUnderwriteError } from './error'
+import {
+  BufferInvalidByteCountError,
+  BufferOverreadError,
+  BufferOverwriteError,
+  BufferUnderreadError,
+  BufferUnderwriteError
+} from './error'
 
 test('instantiation', () => {
   const buffer1 = new MonchBuffer([0x00, 0x00, 0x00, 0x00])
@@ -223,7 +229,7 @@ test.todo('writing bits')
 test.todo('writing next bits')
 
 test('errors', () => {
-  const buffer = new MonchBuffer([ 0x00, 0x00, 0x00, 0x00 ])
+  const buffer = new MonchBuffer([0x00, 0x00, 0x00, 0x00])
 
   expect(() => buffer.readBytes(0x00, 8)).toThrow(BufferOverreadError)
   expect(() => buffer.readBytes(0x05, 1)).toThrow(BufferOverreadError)
@@ -243,13 +249,18 @@ test('errors', () => {
   expect(() => buffer.readUint64LE(0x00, 1)).toThrow(BufferOverreadError)
   expect(() => buffer.readUint64LE(-0x08, 1)).toThrow(BufferUnderreadError)
 
-  
   expect(() => buffer.writeByte(0x04, 0x00)).toThrow(BufferOverwriteError)
   expect(() => buffer.writeByte(-0x01, 0x00)).toThrow(BufferUnderwriteError)
 
-  expect(() => buffer.writeBytes(0x00, new Uint8Array([ 0x00, 0x00, 0x00, 0x00, 0x00 ]))).toThrow(BufferOverwriteError)
-  expect(() => buffer.writeBytes(0x05, new Uint8Array([ 0x00 ]))).toThrow(BufferOverwriteError)
-  expect(() => buffer.writeBytes(-0x01, new Uint8Array([ 0x00 ]))).toThrow(BufferUnderwriteError)
+  expect(() =>
+    buffer.writeBytes(0x00, new Uint8Array([0x00, 0x00, 0x00, 0x00, 0x00]))
+  ).toThrow(BufferOverwriteError)
+  expect(() => buffer.writeBytes(0x05, new Uint8Array([0x00]))).toThrow(
+    BufferOverwriteError
+  )
+  expect(() => buffer.writeBytes(-0x01, new Uint8Array([0x00]))).toThrow(
+    BufferUnderwriteError
+  )
 
   expect(() => buffer.truncateLeft(-1)).toThrow(BufferInvalidByteCountError)
   expect(() => buffer.truncateRight(-1)).toThrow(BufferInvalidByteCountError)
