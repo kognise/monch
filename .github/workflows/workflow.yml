@@ -36,5 +36,6 @@ jobs:
     - name: Publish documentation
       run: |
         git config user.name "TypeScript CI"
+        git config user.email "bot@kognise.dev"
         yarn doc:html
         yarn doc:publish
