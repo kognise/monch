@@ -1,3 +1,7 @@
+> 🚩 **This project is archived!** 🚩
+> 
+> *I learned a lot from making what's here so far, but this is a niche that has already been satisfied and I won't learn much by finishing.*
+
 <h1 align='center'>Monch</h1>
 
 <p align='center'>
@@ -43,7 +47,5 @@ console.log(buffer.toArray())
 ## Acknowledgements
 
 This is a remake of [crunch by superwhiskers](https://github.com/superwhiskers/crunch/) in pure TypeScript. All credit to the idea and original implementation goes to them.
-
-Also in case you've noticed everything on this page is BS and almost nothing is implemented.
 
 🙃
